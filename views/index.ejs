@@ -1,0 +1,45 @@
+<%- include("templates/cabecera"); %>
+
+    <%- include("templates/header"); %>
+        <div class="index_container_main">
+            <% console.log(session.user); %>
+                <% if (session.user.level===3) { %>
+
+                    <div class="container_login_form">
+                        <form action="/api/authentication" method="post">
+                            <label for="user_name">Usuario:</label> <input type="text" name="user_name" id="user_name"
+                                required>
+                            <label for="password">Contraseña:</label> <input type="password" name="password"
+                                id="password" required>
+                            <button type="submit">Iniciar</button>
+                            <a href="">Registrarse</a>
+                        </form>
+                        <div class="container_message_index<%= visible %>">
+                            <p>
+                                <%= message %>
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <% }else{ %>
+                        <div class="container_info_usuario">
+                            <h1>Bienvenido</h1>
+                            <p>
+                                <%= session.user.name +" " +session.user.last_name %>
+                            </p> 
+                            <hr>
+                 <p>
+                    Nombre de usuario: <%= session.user.user_name %>
+                </p>  
+                </div>
+                    <% } %>
+
+                    <div class="index_container_img">
+                        <img src="../images/DABAR_LOGO.png" alt="Ministerio DABAR" srcset="" width="100px">
+                    </div>
+                </div>
+
+                    
+                    <%- include("templates/footer"); %>
+                                    <script src="../js/index.js"></script>

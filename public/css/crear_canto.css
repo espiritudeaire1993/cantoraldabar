@@ -1,0 +1,139 @@
+#form_crear_canto {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    width: 80%;
+    margin: 2% auto;
+}
+
+#form_crear_canto input,
+textarea {
+    padding: 10px;
+}
+
+#container_composers {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    display: none;
+}
+
+#container_composers div {
+    color: rgb(14, 11, 11);
+    /* margin: 10px 5px 10px 5px; */
+    border-bottom: 1px dashed white;
+    margin-left: 10px;
+}
+
+.table_composers_searching {
+    width: 100%;
+    margin: 0;
+    cursor: default;
+}
+
+.table_composers_searching tr:hover {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.container_validacion_modal,
+.container_modal {
+    background-color: rgb(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    display: none;
+}
+
+.container_validacion,
+.container_modal_add_to_list {
+    background-color: white;
+    border: 5px solid var(--color-primary);
+    border-radius: 15px;
+    /* padding: 20px; */
+    /* display: flex;
+    flex-direction: column; */
+    width: 50%;
+    margin: 15% auto;
+    padding: 5px;
+}
+
+.icon_confirm {
+    background-color: white;
+    border: 3px solid var(--color-secondary);
+    border-radius: 50%;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    margin: 1px auto;
+    margin-bottom: 0;
+    top: -30px;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.question_validation {
+    text-align: center;
+    position: relative;
+    top: -10px;
+}
+
+.botones_confirmacion {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.btn_yes,
+.btn_no {
+    color: black;
+    /* border-radius: 15px; */
+}
+
+.btn_yes:hover,
+.btn_no:hover {
+    color: white;
+}
+
+.btn_yes {
+    border: 0;
+    background-color: var(--color-primary);
+}
+
+.btn_no {
+    border: 0;
+    background-color: var(--color-secondary);
+}
+
+.container_tags {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container_tags label {
+    padding: 10px;
+}
+
+.container_tags span,
+.container_tags input {
+    vertical-align: middle;
+}
+
+.options_delete_song {
+    display: none;
+}
+
+hr {
+    border: 1px dashed var(--color-secondary);
+}
+
+.required {
+    border-color: red;
+    border: 1px solid red;
+}

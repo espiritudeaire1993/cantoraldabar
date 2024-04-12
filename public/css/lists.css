@@ -1,0 +1,43 @@
+.container_modal_add_to_list {
+    padding: 50px;
+    overflow-y: auto;
+    height: 50%;
+}
+
+.container_lists_all_lists {
+    margin: 5px;
+    overflow-y: auto;
+    height: 10px;
+}
+
+.check_lista {
+    margin-right: 5px;
+}
+
+.container_lista_especifica{
+    margin: 0 50px;
+}
+
+.add_to_list:hover{
+    color: var(--color-primary);
+}
+
+div.container_playing_list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+div.container_playing_list a{
+    border-right: 1px dashed;
+    padding: 10px;
+}
+
+div.container_playing_list a:last-child{
+    border: 0;
+}
+
+.container_mis_listas{
+    margin: 34px;
+}

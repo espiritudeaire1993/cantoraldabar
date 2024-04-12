@@ -1,0 +1,73 @@
+<%- include("templates/cabecera"); %>
+
+    <%- include("templates/header"); %>
+
+        <div id="container_search_results" class="container_search_results">
+            <i>Resultado total de <b><%= general_search %></b>: <%= count + composers.length %></i>
+
+            <% if (composers.length>0) {%>
+                <table class="table_composers_results">
+                    <% composers.forEach(element=> {%>
+                        <tr class="tr_composers_searching_results">
+                            <td>
+                                <a href=<%=`/api/cancionesde?composerId=${element._id}&name=${element.name}` %>>
+                                    <span class="material-symbols-outlined">
+                                        face
+                                    </span>
+                                    <%- element.name %>
+                                </a>
+                            </td>
+                        </tr>
+                        <% }); %>
+                </table>
+                <% } %>
+
+                    <table class="table_songs_results">
+                        <% if (songs.length>0) {%>
+                            <% songs.forEach(element=>{%>
+                                <tr class="tr_songs_searching_results">
+                                    <td>
+                                        <h1>
+                                            <a href=<%='/api/getSong?id=' + element._id %>>
+                                                <span class="material-symbols-outlined">
+                                                    import_contacts
+                                                </span>
+                                                <%- element.name %>
+                                            </a>
+                                        </h1>
+                                        <h2 class="">
+                                            <a href=<%=`/api/cancionesde?composerId=${element._id}&name=${element.name}`
+                                                %>>
+                                                <span class="material-symbols-outlined">
+                                                    face
+                                                </span>
+                                                <%- element.composerId.name %>
+                                            </a>
+                                        </h2>
+                                        <p>
+                                            <%- element.lyric; %>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <%}) %>
+                                    <% } %>
+                    </table>
+                    <% if ((songs.length===0)&&(composers.length===0)) { %>
+                        <span class="material-symbols-outlined">search_off<i>No se encontraron resultados de la
+                                búsqueda</i></span>
+                        <% } %>
+
+                            <div class="pagination">
+                                <% for( let index=1; index <=totalPaginas; index++ ) { %>
+                                    <a href="/api/general_search?limit=10&pag=<%= index %>&general_search=<%= general_search %>"
+                                        class='<% if (index==currentPag) { %>
+                            pagine_active
+                        <% } %>'>
+                                        <%= index %>
+                                    </a>
+                                    <% } %>
+
+                            </div>
+        </div>
+        <%- include("templates/footer"); %>
+            <script src=""></script>

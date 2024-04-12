@@ -1,0 +1,70 @@
+<%- include("templates/cabecera"); %>
+    <%- include("templates/header"); %>
+
+        <div class="container_lista_especifica">
+            
+
+
+            <div>
+                <span id="id_lista" data-id-lista="<%= idLista %>"></span>
+                <%if (lista){ %>
+                    
+                    <% if (lista.lists[0].songs.length===0) { %>
+                        <i>
+                            <p>No hay canciones en la lista</p>
+                        </i>
+                        <% } %>
+                            <div class="container_title_lista">
+                                <h1>Lista: <%= lista.lists[0].name %>
+                                </h1>
+                            </div>
+                            <div class="container_table_songs_list">
+                                <table>
+                                    <tbody id="tbody_songs_list">
+                                        <% if (lista.lists[0].songs.length!==0){ %>
+
+                                            <% lista.lists[0].songs.forEach(song=> { %>
+
+                                                <tr id="<%= song._id %>" class="tr_songs_on_list">
+                                                    <td class="td_songs_on_list"><a
+                                                            href=<%=`/api/getSong?id=${song._id}&lista=true&idLista=${lista.lists[0]._id}`%>
+                                                            >
+                                                            <%= song.name %>
+                                                        </a></td>
+                                                    <td>
+                                                        <a onclick="removeSongFromList('<%= song._id %>')">
+                                                            <span class="material-symbols-outlined">remove</span>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+
+                                                <% }); %>
+
+                                                    <% } %>
+                                    </tbody>
+                                </table>
+                                <% if (lista.lists[0].songs.length!==0){ %>
+                                    <a
+                                        href=<%=`/api/getSong?id=${lista.lists[0].songs[0]._id}&lista=true&idLista=${lista.lists[0]._id}`%>>
+                                        <span class="material-symbols-outlined">
+                                            play_circle
+                                            </span>Comenzar
+                                    </a>
+                                    <% } %>
+                            </div>
+                            <% } %>
+            </div>
+            <div class="container_add_song">
+                <input type="text" placeholder="Busque para agregar" id="input_busqueda_opciones_agregar">
+                <div id="container_busqueda_opciones_agregar">
+                    Resultados de la búsqueda
+                    <table id="tabla_busqueda_opciones_agregar" class="tabla_busqueda_opciones_agregar">
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <script src="../js/listaEspecifica.js"></script>
+
+        <%- include("templates/footer"); %>

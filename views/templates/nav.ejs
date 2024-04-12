@@ -1,0 +1,40 @@
+<nav id="topnav" class="topnav">
+    <a class="icon_menu_nav" onclick="showMenuNav()">
+        <img src="../images/menu_FILL0_wght400_GRAD0_opsz24.png" alt="Ministerio DABAR" srcset="" width="100px">
+    </a>
+
+    <% if (session.user.level===1 || session.user.level===2) { %>
+        <a href="/api/aportar_canto">Enviar cifrado
+        </a>
+        <a href="/api/mis_listas">Mis listas
+        </a>
+        <% } %>
+
+            <a href="/api/busqueda_avanzada_filtros">Búsqueda Avanzada</a>
+            <% if (session.user.level<3) { %>
+                <a href="/cerrar_sesion">Cerrar sesión</a>
+                <% } %>
+                    <form action="/api/general_search" method="get" id="form_general_search">
+
+                        <div class="busqueda">
+                            <input type="hidden" name="limit" value="10">
+                            <input type="hidden" name="pag" value="1">
+                            <input type="search" placeholder="Búsqueda general" name="general_search" required
+                                autocomplete="off" id="input_general_search">
+                            <button type="submit">
+                                <span class="material-symbols-outlined">search</span>
+                            </button>
+                        </div>
+                        <div class="container_modal_searching" id="container_modal_searching">
+                            <ul id="song_list_modal_search">
+                            </ul>
+                            <hr>
+                            <ul id="composer_list_modal_search">
+                            </ul>
+                            <i><span id="searching_input_text"></span></i>
+                        </div>
+
+                    </form>
+                    <script src="../js/nav.js"></script>
+                    <script src="../js/searching_index.js"></script>
+</nav>

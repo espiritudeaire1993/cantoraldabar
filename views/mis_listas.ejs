@@ -1,0 +1,50 @@
+<%- include("templates/cabecera"); %>
+
+    <%- include("templates/header"); %>
+
+        <div class="container_mis_listas">
+
+            <div class="container_inputs_create_new_list">
+
+                <input type="text" name="new_list_name" id="input_create_new_list" class="input input_create_new_list">
+
+                <button class="button button_create_new_list" onclick="createList(2)">
+                    <span class="material-symbols-outlined">
+                        playlist_add
+                    </span>
+                </button>
+            </div>
+
+            <table id="table_all_lists">
+                <thead>
+                    <th colspan="2">Listas de <%= session.user.user_name %>
+                    </th>
+                </thead>
+                <tbody id="tbody_all_lists">
+
+                    <i>Número de listas: <span id="span_length_lists">
+                            <%= length %>
+                        </span></i>
+
+                    <% allLists.lists.forEach(list=> {%>
+                        <tr id="list_<%= list._id %>">
+                            <td>
+                                <a href=<%='/api/lista?idLista=' + list.id %>> <%= list.name %></a>
+                            </td>
+                            <td>
+                                <button onclick="deleteList('<%= list._id %>')" class="button">
+                                    <span class="material-symbols-outlined">
+                                        delete
+                                    </span>
+                                </button>
+                            </td>
+                        </tr>
+                        <%}); %>
+                </tbody>
+            </table>
+
+        </div>
+        <%- include("templates/footer"); %>
+            <script src="../js/mis_listas.js"></script>
+            <script src="../js/addToList.js"></script>
+            <script src="../js/index.js"></script>

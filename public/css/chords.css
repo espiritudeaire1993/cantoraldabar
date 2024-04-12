@@ -1,0 +1,113 @@
+#container_section_canto {
+    position: relative;
+    margin: 0 5%;
+    overflow: auto;
+}
+
+.chord {
+    color: var(--color-chords);
+    font-style: normal;
+    font-size: large;
+}
+
+#section_canto,
+.tags_container {
+    margin: 10px 15px 0 15px;
+}
+
+#info_song {
+    border-bottom: 1px solid var(--color-primary);
+    margin-top: 20px;
+}
+
+.name_song {
+    font-size: 30px;
+}
+
+.name_composer {
+    font-size: 20px;
+}
+
+#song_lyric_chords {
+    margin-top: 10px;
+    position: relative;
+}
+
+.tags_container {
+    border-top: 1px solid var(--color-primary);
+    /* border-radius: 10px; */
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: smaller;
+}
+
+.container_actions_buttons {
+    position: absolute;
+    
+    top: 0;
+    right: 0;
+}
+
+.botones_cambios_cancion button,
+.actions_songs a,
+.button {
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    border-radius: 50%;
+    
+    text-align: center;
+    vertical-align: center;
+    border: 1px solid;
+    margin-bottom: 5px;
+    cursor: grab;
+}
+
+.botones_cambios_cancion,
+.actions_songs,
+.button_menu_changes,
+.button_menu_updates,
+.button_back,
+.button_add_to_list {
+    /* display: flex;
+    flex-direction: column; */
+    display: none;
+}
+
+.button {
+    color: black;
+    background-color: white;
+    position: relative;
+}
+
+.button:hover {
+    color: var(--color-primary);
+}
+
+.active_button {
+    display: flex;
+    flex-direction: column;
+}
+
+.inactive_button {
+    display: none;
+}
+
+/* .botones_cambios_cancion {
+    position: relative;
+}  */
+
+.text_tooltip {
+    width: 170px;
+    color: var(--color-primary);
+    text-align: right;
+    right: 60px;
+    position: absolute;
+    z-index: 2;
+    visibility: hidden;
+    font-size: 17px;
+}
+
+.button:hover .text_tooltip {
+    visibility: visible;
+}

@@ -1,0 +1,75 @@
+<%- include("templates/cabecera"); %>
+
+    <body>
+        <%- include("templates/header"); %>
+                <h2>Total de Canciones: <%= count %>
+                </h2>
+                <table class="table_results">
+                    <% if (songs.length>0) {%>
+                        <thead>
+                            <th>Canción</th>
+                            <th>Compositor</th>
+                            <th>Etiquetas</th>
+                            <th>Acciones</th>
+                        </thead>
+                        <% songs.forEach(element=> {%>
+                            <tr>
+                                <td>
+                                    <a href=<%='/api/getSong?id=' + element._id %>>
+                                        <%= element.name %>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href=<%=`/api/cancionesde?composerId=${element.composerId._id}&name=${element.composerId.name}`%>>
+                                        <%= element.composerId.name %>
+                                    </a>
+                                </td>
+                                <td>
+
+                                    <% for( let index=0; index < element.tags.length; index++ ) { %>
+                                        <%= element.tags[index] %>
+
+                                            <% if ((index+1)<element.tags.length) { %>,<% } %>
+                                                    <% } %>
+                                </td>
+                                <td>
+                                    <div class="actions_songs_search" id="<%= " actions_songs_"+ element._id%>">
+                                        <a href="#" onclick="showDeleteOptions('<%= element._id %>')"><span
+                                                class="material-symbols-outlined">
+                                                delete
+                                            </span></a>
+                                        <a href=<%="/api/modificar_song?id=" +element._id %>><span
+                                                class="material-symbols-outlined">
+                                                update
+                                            </span></a>
+                                    </div>
+                                    <div class="options_delete_song" id="<%= " options_delete_songs_"+ element._id%>">
+                                        <a class="option_yes_delete" onclick="deleteSong('<%= element._id %>')"><span
+                                                class="material-symbols-outlined">
+                                                done
+                                            </span></a>
+                                        <a class="option_no_delete"><span class="material-symbols-outlined"
+                                                onclick="hideDeleteOptions('<%= element._id %>')">
+                                                close
+                                            </span></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <% }); %>
+                                <% } %>
+                </table>
+                <div class="pagination">
+                    <% for (let index=1; index <=totalPaginas; index++) {%>
+                        <a href=<%="/api/busqueda_especial?limit=20&pag=" +index %>
+                            <% if (index===current_page*1) {%>
+                                class="pagine_active"
+                                <% }%>>
+                                    <%= index %>
+                        </a>
+                        <% } %>
+                </div>
+
+
+                <%- include("templates/footer"); %>
+                    <script src="../js/busqueda_especial.js"></script>
+   

@@ -1,0 +1,78 @@
+<%- include("templates/cabecera"); %>
+
+    <%- include("templates/header"); %>
+
+
+        <span type-function='<%= type_function %>' id='type-function'></span>
+        <% let _id=0; %>
+            <% if (type_function===2) {%>
+                <% _id=song._id %>
+                    <%} %>
+                        <span id="infoSongToUpdate" info="<%= _id %>"></span>
+                        <% let title='' ; let composer='' ; let lyric='' ; %>
+                            <% if (type_function===2) { %>
+                                <% title=song.name; composer=song.composerId.name; lyric=song.lyric; %>
+                                    <% } %>
+
+                                        <form action="" method="" id="form_crear_canto" class="form_crear_canto">
+                                            <input type="text" placeholder="Título" name="name_song"
+                                                id="input_name_song" required autocomplete="off" value="<%= title %>">
+                                            <input type="text" placeholder="Compositor" name="name_composer"
+                                                id="input_composer" composerId="" autocomplete="off"
+                                                value="<%= composer %>">
+                                            <div id="container_composers">
+                                                <table id="table_composers_searching" class="table_composers_searching">
+                                                </table>
+                                            </div>
+                                            <textarea placeholder="Letra" name="lyric" id="input_lyric" cols="70"
+                                                rows="30" required><%= lyric %></textarea>
+                                            <div class="container_tags" id="container_tags">
+                                                <% tags.forEach(element=>{%>
+                                                    <label for="<%= element.name %>" class=<%="label_tag" %>>
+                                                        <input value="<%= element.name %>" class="checkbox_tag"
+                                                            type="checkbox" name="<%= element.name %>" id=<%="tag_"
+                                                            +element.name %>
+                                                        <% if (type_function===2) { %>
+                                                            <% if(song.tags.includes(element.name)){ %> checked
+                                                                <% } %>
+                                                                    <% } %>
+                                                                        >
+                                                                        <span>
+                                                                            <%= element.name %>
+                                                                        </span>
+                                                    </label>
+                                                    <% }) %>
+                                            </div>
+                                            <div class="container_buttons">
+                                                <input type="button" value="Enviar" id="btn_crear_modificar">
+                                            </div>
+                                        </form>
+                                        <div id="container_validacion_modal" class="container_validacion_modal">
+                                            <div class="container_validacion">
+                                                <div class="icon_confirm">
+                                                    <span class="material-symbols-outlined ">
+                                                        priority_high
+                                                    </span>
+                                                </div>
+                                                <p class="question_validation">
+                                                    <% if (type_function===1) { %>
+                                                        ¿Desea enviar esta canción?
+                                                        <% } else{%>
+                                                            ¿Desea modificar esta canción?
+                                                            <% }%>
+                                                </p>
+                                                <hr>
+                                                <div class="botones_confirmacion">
+                                                    <button id="btn_yes" class="btn_yes"><span
+                                                            class="material-symbols-outlined">
+                                                            done
+                                                        </span></button>
+                                                    <button id="btn_no" class="btn_no"><span
+                                                            class="material-symbols-outlined">
+                                                            close
+                                                        </span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <%- include("templates/footer"); %>
+                                            <script src="../js/crear_modificar_canto.js"></script>

@@ -1,0 +1,61 @@
+.index_container_main {
+    margin: 20px;
+}
+
+.container_login_form, .container_info_usuario {
+    width: 300px;
+    padding: 30px;
+    border: 1px solid var(--color-primary);
+    border-radius: 30px;
+    box-shadow: 4px 0 5px var(--color-secondary);
+    margin: 0 auto;
+}
+
+.container_login_form form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.container_login_form button {
+    font-size: large;
+}
+
+.container_message_index {
+
+
+    visibility: hidden;
+}
+
+.container_message_index_on {
+    visibility: visible;
+
+    margin-top: 10px;
+
+    padding: 5px;
+    border: 1px solid var(--color-primary);
+    border-radius: 30px;
+    box-shadow: 4px 0 5px var(--color-secondary);
+}
+
+.container_info_usuario {
+    display: flex;
+    flex-direction: column;
+}
+
+.container_info_usuario hr {
+    margin-bottom: 20px;
+}
+
+.index_container_main{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.index_container_img img{
+    /* width: 100%; */
+    border: 1px solid black;
+}

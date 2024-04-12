@@ -1,0 +1,32 @@
+<%- include("templates/cabecera"); %>
+
+    <%- include("templates/header"); %>
+
+            <div class="container_options_searching">
+                <div class="container_tags">
+                    <% tags.forEach(element=>{%>
+                        <label for="<%= element.name %>" class=<%="label_tag" %>>
+                            <input value="<%= element.name %>" class="checkbox_tag" type="checkbox"
+                                name="<%= element.name %>" id=<%="tag_" +element.name %> >
+                            <span>
+                                <%= element.name %>
+                            </span></label>
+                        <% }) %>
+                </div>
+                <label for="">por título: <input type="search" name="title_search_input"
+                        id="title_search_input"></label>
+                <label for="">por compositor: <input type="search" name="composer_search_input"
+                        id="composer_search_input"></label>
+            </div>
+            <div class="container_search_results">
+                <table class="table_filtered_songs" id="table_filtered_songs">
+                    <thead>
+                        <th>Canción</th>
+                        <th>Compositor</th>
+                        <th>Etiquetas</th>
+                    </thead>
+                    <tbody id="tbody_table_filtered_songs" class="tbody_table_filtered_songs"></tbody>
+                </table>
+            </div>
+            <%- include("templates/footer"); %>
+                <script src="../js/busqueda_avanzada.js"></script>

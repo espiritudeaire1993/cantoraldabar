@@ -1,0 +1,177 @@
+<%- include("templates/cabecera"); %>
+    <%- include("templates/header"); %>
+        <div id="container_section_canto" data-id-song="<%= id %>">
+            <div id="section_canto">
+                <div id="info_song">
+                    <div class="name_song">
+                        <%= nameSong %>
+                    </div>
+                    <div id="name_composer">
+                        <%= nameComposer %>
+                    </div>
+                    <div id="name_creator">
+                        <%= user_name %>
+                    </div>
+                </div>
+                <div id="song_lyric_chords" class="song_lyric_chords">
+                    <pre><%= lyric %></pre>
+                    <div class="container_actions_buttons">
+                        <div class="button button_menu_actions" onclick="openMenu()"><span
+                                class="material-symbols-outlined">
+                                <span class="text_tooltip">Menú</span>
+                                menu_open
+                            </span>
+                        </div>
+                        <div class="button button_back" onclick="back()">
+                            <span class="text_tooltip">Atrás</span>
+                            <span class="material-symbols-outlined">
+                                arrow_back
+                            </span>
+                        </div>
+                        <div class="button button_menu_changes" onclick="openMenuChanges()">
+                            <span class="text_tooltip">Tonalidad</span>
+                            <span class="material-symbols-outlined">
+                                music_note
+                            </span>
+                        </div>
+                        <% if (session.user.level<3) { %>
+                            <div class="button button_add_to_list" onclick="openModalAddList()">
+                                <span class="text_tooltip">Agregar a lista</span>
+                                <span class="material-symbols-outlined">
+                                    add
+                                </span>
+                            </div>
+                            <div class="button button_menu_updates" onclick="openActionsSong()">
+                                <span class="text_tooltip">Ajustes</span>
+                                <span class="material-symbols-outlined">
+                                    settings
+                                </span>
+                            </div>
+                            <% } %>
+                                <div class="botones_cambios_cancion">
+                                    <button class="button" onclick="transposeChords(1)"><span class="text_tooltip">Subir
+                                            medio
+                                            tono</span>+1/2</button>
+                                    <button class="button" onclick="transposeChords(2)"><span class="text_tooltip">Subir
+                                            un
+                                            tono</span>+1</button>
+                                    <button class="button" onclick="transposeChords(-1)"><span
+                                            class="text_tooltip">Bajar medio
+                                            tono</span>-1/2</button>
+                                    <button class="button" onclick="transposeChords(-2)"><span
+                                            class="text_tooltip">Bajar un
+                                            tono</span>-1</button>
+                                    <!-- <button class="button" onclick="">#/b</button> -->
+                                </div>
+                                <% if (session.user.level<3) { %>
+                                    <div class="actions_songs">
+                                        <a class="button" id="btn_delete" href="#">
+                                            <span class="text_tooltip">Eliminar</span>
+                                            <span class="material-symbols-outlined">
+                                                delete
+                                            </span></a>
+                                        <a href=<%="/api/modificar_song?id=" +id %> class="button">
+                                            <span class="text_tooltip">Modificar</span>
+                                            <span class="material-symbols-outlined">
+                                                update
+                                            </span></a>
+                                    </div>
+                                    <div class="options_delete_song">
+                                        <a class="option_yes_delete" href="#"><span class="material-symbols-outlined">
+                                                done
+                                            </span></a>
+                                        <a class="option_no_delete" href="#"><span class="material-symbols-outlined">
+                                                close
+                                            </span></a>
+                                    </div>
+                                    <% } %>
+                    </div>
+                </div>
+            </div>
+            <div class="tags_container">
+                <span class="tags_title">Tags:</span>
+                <span class="tags_names">
+                    <% for( let index=0; index < tags.length; index++ ) { %>
+                        <%= tags[index] %>
+                            <% if ((index+1)<tags.length) { %>,<% } %>
+                                    <% } %>
+                </span>
+            </div>
+
+        </div>
+        <div id="container_validacion_modal" class="container_validacion_modal">
+            <div class="container_validacion">
+                <div class="icon_confirm">
+                    <span class="material-symbols-outlined ">
+                        priority_high
+                    </span>
+                </div>
+                <p class="question_validation">
+                    ¿Desea eliminar esta canción?
+                </p>
+                <hr>
+                <div class="botones_confirmacion">
+                    <button id="btn_yes" class="btn_yes" onclick="deleteSong('<%= id %>')"><span
+                            class="material-symbols-outlined">
+                            done
+                        </span></button>
+                    <button id="btn_no" class="btn_no"><span class="material-symbols-outlined">
+                            close
+                        </span></button>
+                </div>
+            </div>
+        </div>
+
+        <% if (session.user.level<3) { %>
+            <div class="container_modal" id="container_modal">
+                <div class="container_modal_add_to_list" id="container_modal_add_to_list">
+                    <div class="container_lists" id="container_lists">
+                        <h2>Mis listas</h2>
+                        <div id="container_lists_all_lists">
+                        </div>
+                    </div>
+                    <div class="container_inputs_create_new_list">
+
+                        <input type="text" name="new_list_name" id="input_create_new_list"
+                            class="input input_create_new_list">
+
+                        <button class="button button_create_new_list" onclick="createList(1)">
+                            <span class="material-symbols-outlined">
+                                playlist_add
+                            </span>
+                        </button>
+                    </div>
+                    <button id="btn_add_to_list" class="button btn_add_to_list" onclick="saveSongToLists()">
+                        <span class="material-symbols-outlined">
+                            done_outline
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <% } %>
+                <% if (ifLista.bandera) { %>
+
+                    <div class="container_playing_list">
+                        <% if (ifLista.indexSong>0) { %>
+                            <a href=<%=`/api/getSong?id=${ifLista.lista.songs[ifLista.indexSong-1]._id}&lista=true&idLista=${ifLista.lista._id}`
+                                %>><span class="material-symbols-outlined">
+                                    navigate_before
+                                </span></a>
+                            <% } %>
+                                <a href=<%='/api/lista?idLista=' + ifLista.lista._id %>>Ver lista</a>
+                                <% if (ifLista.indexSong!==(ifLista.lista.songs.length-1)) { %>
+                                    <a href=<%=`/api/getSong?id=${ifLista.lista.songs[(ifLista.indexSong+1)]._id}&lista=true&idLista=${ifLista.lista._id}`
+                                        %>><span class="material-symbols-outlined">
+                                            navigate_next
+                                        </span></a>
+
+                                    <% } %>
+                    </div>
+
+                    <% } %>
+
+                        <%- include("templates/footer"); %>
+                            <script src="../js/modifcar_acordes.js"></script>
+                            <script src="../js/canto.js"></script>
+                            <script src="../js/menu_settings_song.js"></script>
+                            <script src="../js/addToList.js"></script>

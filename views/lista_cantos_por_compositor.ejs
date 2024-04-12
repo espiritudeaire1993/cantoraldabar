@@ -1,0 +1,34 @@
+<%- include("templates/cabecera"); %>
+
+  <%- include("templates/header"); %>
+
+        <div id="container_search_results" class="container_search_results">
+          <i>Resultado Canciones de <%= nameComposer %></i>
+          
+          <table class="table_results">
+            <% if (songs.length>0) {%>
+              <tr>
+                <th>
+                  <h2>Canciones</h2>
+                </th>
+              </tr>
+              <% songs.forEach(element=> {%>
+                <tr>
+                  <td>
+                    <a href=<%='/api/getSong?id=' + element._id %>>
+                      <span class="material-symbols-outlined">
+                        import_contacts
+                    </span><%= element.name %>
+                    </a>
+                  </td>
+                  <td><span class="material-symbols-outlined">
+                    tag
+                    </span><%= element.tags %></td>
+                </tr>
+                <% }); %>
+                  <% } %>
+          </table>
+        </div>
+        <%- include("templates/footer"); %>
+          <script src=""></script>
+

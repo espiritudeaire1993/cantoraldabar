@@ -1,0 +1,25 @@
+.pagination{
+    margin: 40px auto;
+    max-width: 50%;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 5px;
+}
+
+.pagination a{
+    text-decoration: none;
+    padding: 8px 16px;
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.pagination a:hover:not(.pagine_active){
+    background-color: var(--color-secondary);
+    color: white;
+}
+
+.pagination a.pagine_active{
+    background-color: var(--color-secondary);
+}

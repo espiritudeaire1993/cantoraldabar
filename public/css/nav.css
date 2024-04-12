@@ -1,0 +1,149 @@
+nav,
+.topnav {
+    position: relative;
+    margin: auto 20px;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: right;
+    align-items: center;
+}
+
+.icon_menu_nav {
+    display: none;
+    color: black;
+    /* width: 10px; */
+}
+
+
+
+nav a {
+    text-align: center;
+    text-decoration: none;
+    padding: 5px;
+}
+
+nav a:link,
+nav a:visited {
+    color: black;
+}
+
+nav a:hover {
+    color: var(--color-primary);
+}
+
+nav form .busqueda {
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid var(--color-primary);
+    padding: 2px;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+nav form {
+    display: inline-block;
+    position: relative;
+    margin-left: 20px;
+}
+
+nav form input {
+    margin-top: 0;
+    padding: 0;
+    border: none;
+}
+
+nav form input:focus {
+    outline: none;
+}
+
+nav form button {
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: var(--color-primary);
+    color: white;
+    padding: 2px 3px;
+
+}
+
+nav form button:hover {
+    background-color: white;
+    color: black;
+}
+
+
+
+nav form .container_modal_searching {
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: 0 5px 2px gray;
+    top: 45px;
+    width: 100%;
+    border: 1px solid var(--color-primary);
+    position: absolute;
+    background-color: white;
+    z-index: 3;
+    visibility: hidden;
+
+}
+
+nav form:hover .container_modal_searching {
+    visibility: visible;
+}
+
+nav form .container_modal_searching ul {
+    list-style: none;
+    padding: 5px 10px;
+}
+
+nav form .container_modal_searching ul li a:hover {
+    color: var(--color-primary);
+}
+
+
+@media screen and (max-width: 800px) {
+
+    .topnav *:not(:first-child) {
+        display: none;
+    }
+
+    .topnav .icon_menu_nav {
+        float: right;
+        display: block;
+    }
+
+    .topnav.responsive .icon_menu_nav {
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .topnav.responsive {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-bottom: 10px;
+    }
+
+    nav form {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .topnav.responsive * {
+        display: flex;
+    }
+
+    .busqueda {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+}
